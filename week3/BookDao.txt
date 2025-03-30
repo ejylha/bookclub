@@ -1,0 +1,28 @@
+package com.bookclub.dao;
+
+import com.bookclub.model.Book;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BookDao implements GenericDao<Book, String> {
+
+    private List<Book> books = new ArrayList<>();
+
+    @Override
+    public List<Book> list() {
+        return books;
+    }
+
+    @Override
+    public Book find(String isbn) {
+        return books.stream()
+                .filter(book -> book.getIsbn().equals(isbn))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+}
