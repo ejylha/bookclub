@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>BookClub | About Us</title>
+        <!-- Bootstrap StyleSheet CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+              rel="stylesheet" 
+              integrity="sha384-EVSTQN3/azprG1Anm3QGpJLlm9Nnao0Yz1zcQTWFspd3yD65VohbpuuCOmLAsJc" 
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <div th:insert="~{fragments/header :: header}"></div>
+        <main>
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">About Us</h1>
+                        <p class="lead text-muted">
+                            Welcome to BookClub, your ultimate destination for book enthusiasts. 
+                            Our mission is to bring together readers from all walks of life to share 
+                            their love for literature. Whether you're into fiction, non-fiction, or 
+                            poetry, we have something for everyone.
+                        </p>
+                        <p class="lead text-muted">
+                            Founded with a passion for storytelling, BookClub aims to create a 
+                            community where ideas and stories come alive. Join us as we explore 
+                            the world, one book at a time.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
+    </body>
+</html>
