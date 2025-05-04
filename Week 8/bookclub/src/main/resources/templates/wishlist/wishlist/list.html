@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Search Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Book Search Results</h1>
+
+    <div th:if="${book != null}">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${book.title}">Book Title</h5>
+                <h6 class="card-subtitle text-muted" th:text="'Author: ' + ${book.author}">Author</h6>
+                <p class="card-text mt-2">
+                    <strong>Publisher:</strong> <span th:text="${book.publisher}">Publisher</span><br>
+                    <strong>ISBN:</strong> <span th:text="${book.isbn}">ISBN</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${book == null}">
+        <div class="alert alert-warning">
+            No book found. Try a different search.
+        </div>
+    </div>
+
+    <a href="/" class="btn btn-secondary mt-3">Return Home</a>
+
+    <div class="mt-4" sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
