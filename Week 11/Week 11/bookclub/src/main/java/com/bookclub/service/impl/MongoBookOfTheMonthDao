@@ -1,0 +1,46 @@
+package com.bookclub.dao.impl;
+
+import com.bookclub.dao.BookOfTheMonthDao;
+import com.bookclub.model.BookOfTheMonth;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository("bookOfTheMonthDao")
+public class MongoBookOfTheMonthDao implements BookOfTheMonthDao {
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    @Override
+    public void add(BookOfTheMonth entity) {
+        mongoTemplate.save(entity);
+    }
+
+    @Override
+    public void update(BookOfTheMonth entity) {
+        mongoTemplate.save(entity);
+    }
+
+    @Override
+    public boolean remove(String key) {
+        Query query = new Query(Criteria.where("id").is(key));
+        mongoTemplate.remove(query, BookOfTheMonth.class);
+        return true;
+    }
+
+    @Override
+    public List<BookOfTheMonth> list(String key) {
+        Query query = new Query(Criteria.where("month").is(Integer.parseInt(key)));
+        return mongoTemplate.find(query, BookOfTheMonth.class);
+    }
+
+    @Override
+    public BookOfTheMonth find(String id) {
+        return mongoTemplate.findById(id, BookOfTheMonth.class);
+    }
+}

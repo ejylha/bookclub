@@ -1,0 +1,23 @@
+package com.bookclub.controller;
+
+import com.bookclub.dao.BookDao;
+import com.bookclub.model.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class BookController {
+
+    @Autowired
+    private BookDao bookDao;
+
+    @GetMapping("/books")
+    public String searchBooks(@RequestParam("query") String query, Model model) {
+        Book book = bookDao.find(query);
+        model.addAttribute("book", book);
+        return "list";
+    }
+}
